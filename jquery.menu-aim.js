@@ -67,7 +67,8 @@
  *          submenuDirection: "right"
  *      });
  *
- * https://github.com/kamens/jQuery-menu-aim
+ * https://github.com/PeterKravchenko/jQuery-menu-aim
+ * MIT License
 */
 (function($) {
 
@@ -316,8 +317,16 @@
                 .mouseleave(mouseleaveRow)
                 .click(clickRow);
 
+        // hook up для обработки динамических элементов
+        $menu.bind('DOMNodeInserted', function(e) {
+            var $newEl = $(e.target);
+
+            $newEl.mouseenter(mouseenterRow)
+                .mouseleave(mouseleaveRow)
+                .click(clickRow);
+        });
+
         $(document).mousemove(mousemoveDocument);
 
     };
 })(jQuery);
-
